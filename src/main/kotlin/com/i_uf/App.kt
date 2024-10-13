@@ -1,3 +1,5 @@
+package com.i_uf
+
 import java.awt.*
 import java.awt.Color
 import java.awt.datatransfer.Clipboard

@@ -1,3 +1,5 @@
+package com.i_uf
+
 import java.awt.image.BufferedImage
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -16,7 +18,7 @@ fun read16x16(image: BufferedImage): Array<String> {
     return result
 }
 fun read16x16C(image: BufferedImage): Array<Array<Color>> {
-    val result = Array(16){Array(16){Color.RED} }
+    val result = Array(16){Array(16){ Color.RED } }
     for (i in 0 until 16) {
         for (j in 0 until 16) {
             val pixel = image.getRGB(j, i)
