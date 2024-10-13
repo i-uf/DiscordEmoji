@@ -13,9 +13,10 @@ import javax.swing.*
 fun main() {
     App.isVisible = true
 }
-object App : JFrame("DiscordEmoji v1.0.0") {
+object App : JFrame("DiscordEmoji v1.0.1") {
     private fun readResolve(): Any = App
     init {
+        var result: Array<String>? = null
         var file: File? = null
         var imageRaw = false
         preferredSize = Dimension(654, 677)
@@ -46,14 +47,18 @@ object App : JFrame("DiscordEmoji v1.0.0") {
             buttonGroup.isVisible = true
             label.text = ""
             label.icon = ImageIcon(resizeImage(emojiColor(image, imageRaw), 480, 480))
-            val result = read16x16(image)
-            button1.addActionListener {
-                val stringSelection = StringSelection(result[0])
+            result = read16x16(image)
+        }
+        button1.addActionListener {
+            result!!.let {
+                val stringSelection = StringSelection(it[0])
                 val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
                 clipboard.setContents(stringSelection, null)
             }
-            button2.addActionListener {
-                val stringSelection = StringSelection(result[1])
+        }
+        button2.addActionListener {
+            result!!.let {
+                val stringSelection = StringSelection(it[1])
                 val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
                 clipboard.setContents(stringSelection, null)
             }
