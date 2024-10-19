@@ -10,12 +10,14 @@ import java.io.File
 import javax.imageio.ImageIO
 import javax.swing.*
 
+
 fun main() {
     App.isVisible = true
 }
-object App : JFrame("DiscordEmoji v1.0.1") {
+object App : JFrame("DiscordEmoji v1.0.2") {
     private fun readResolve(): Any = App
     init {
+        contentPane.removeAll()
         var result: Array<String>? = null
         var file: File? = null
         var imageRaw = false
@@ -27,18 +29,20 @@ object App : JFrame("DiscordEmoji v1.0.1") {
         contentPane.add(upload)
         val fileChooser = FileDialog(this, "이미지 업로드", FileDialog.LOAD)
         fileChooser.file = "*.png"
-        val label = JLabel("Drag an Image here")
+        val label = contentPane.add(JLabel("Drag an Image here")) as JLabel
         label.horizontalAlignment = JLabel.CENTER
         label.bounds = Rectangle(0, 160, 480, 480)
         label.isOpaque = true
         label.background = Color.WHITE
-        val buttonGroup = JPanel()
+        val buttonGroup = contentPane.add(JPanel()) as JPanel
         buttonGroup.layout = GridLayout(0, 1)
         buttonGroup.bounds = Rectangle(480, 160, 160, 480)
+        val add = contentPane.add(JPanel()) as JPanel
+        add.layout = GridLayout(0, 1)
+        add.bounds = Rectangle(640, 0, 320, 160)
         val button1 = buttonGroup.add(JButton("Copy Top")) as JButton
         val button2 = buttonGroup.add(JButton("Copy Bottom")) as JButton
         val button3 = buttonGroup.add(JButton("Mode: Discord")) as JButton
-        val button4 = buttonGroup.add(JButton("Option")) as JButton
         fun loadImage(file1: File) {
             file = file1
             val image = resizeImage(ImageIO.read(file), 16, 16)
@@ -68,8 +72,6 @@ object App : JFrame("DiscordEmoji v1.0.1") {
             file?.let { loadImage(it) }
             button3.text = if(imageRaw) "Mode: Image Raw" else "Mode: Discord"
         }
-        contentPane.add(label)
-        contentPane.add(buttonGroup)
         buttonGroup.isVisible = false
         upload.addActionListener{
             fileChooser.isVisible = true
