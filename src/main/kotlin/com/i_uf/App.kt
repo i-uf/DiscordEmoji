@@ -14,14 +14,14 @@ import javax.swing.*
 fun main() {
     App.isVisible = true
 }
-object App : JFrame("DiscordEmoji v1.0.2") {
+object App : JFrame("DiscordEmoji v1.0.3") {
     private fun readResolve(): Any = App
     init {
         contentPane.removeAll()
         var result: Array<String>? = null
         var file: File? = null
         var imageRaw = false
-        preferredSize = Dimension(654, 677)
+        contentPane.preferredSize = Dimension(640, 640)
         isResizable = false
         contentPane.layout = null
         val upload = JButton("Upload")

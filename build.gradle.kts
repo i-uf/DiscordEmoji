@@ -1,10 +1,12 @@
+import org.jetbrains.kotlin.backend.jvm.jvmPhases
+
 plugins {
     kotlin("jvm") version "1.9.23"
     id("com.github.johnrengelman.shadow") version "7.1.0" // Shadow 플러그인 추가
 }
 
 group = "com.i_uf"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
